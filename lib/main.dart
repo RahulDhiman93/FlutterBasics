@@ -1,9 +1,89 @@
 import 'package:flutter/material.dart';
 
 void main(){
-    runApp(new MaterialApp(home: new tabBarView()));
+    runApp(new MaterialApp(home: new raiseButton()));
   //runApp(new stackView());
 }
+
+
+
+class raiseButton extends StatefulWidget {
+  @override
+  _raiseButtonState createState() => _raiseButtonState();
+}
+
+class _raiseButtonState extends State<raiseButton> {
+
+  String ptest = 'Empty';
+
+  void raisebuttonmenthod(value){
+     setState(() {
+       ptest = value;
+     });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(title: new Text('RaiseButton'),),
+      body: new Column(
+        children: <Widget>[
+          new RaisedButton(
+              onPressed:(){
+                raisebuttonmenthod('You Pressed Raised Button');
+              },
+              child: new Text('Raised Button')
+          ),
+          new FlatButton(
+              onPressed: (){
+                raisebuttonmenthod('You Pressed Flat Button');
+              },
+              child: new Text('Flat Button')),
+          new Center(
+            child: new Text(ptest),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class textfieldBasic extends StatefulWidget {
+  @override
+  _textfieldBasicState createState() => _textfieldBasicState();
+}
+
+class _textfieldBasicState extends State<textfieldBasic> {
+
+  String ptext = 'Hello';
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+    appBar: new AppBar(title: new Text('TextField'),),
+      body: new Column(
+        children: <Widget>[
+          new TextField(
+             onSubmitted: (String txt){
+               setState(() {
+                 ptext = txt;
+               });
+             },
+             decoration: new InputDecoration(
+               hintText: 'Placeholder',
+               labelText: 'Name'
+             ),
+          ),
+          new Text(ptext)
+        ],
+      ),
+    );
+  }
+}
+
 
 
 class tabBarView extends StatefulWidget {
@@ -96,6 +176,7 @@ class _appBarActionState extends State<appBarAction> {
     );
   }
 }
+
 
 
 
