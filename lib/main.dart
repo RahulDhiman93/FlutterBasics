@@ -1,9 +1,48 @@
 import 'package:flutter/material.dart';
 
 void main(){
-    runApp(new MaterialApp(home: new radioButtonView()));
+    runApp(new MaterialApp(home: new sliderView()));
   //runApp(new stackView());
 }
+
+class sliderView extends StatefulWidget {
+  @override
+  _sliderViewState createState() => _sliderViewState();
+}
+
+class _sliderViewState extends State<sliderView> {
+
+  double dvalue = 1.0;
+
+  void sliderMethod(value){
+    setState(() {
+      dvalue = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+         children: <Widget>[
+           new Slider(
+               value: dvalue,
+               min: 1.0,
+               max: 10.0,
+               onChanged: (double num){
+                 sliderMethod(num);
+               }
+           ),
+           new Text('$dvalue')
+         ],
+        ),
+      ),
+    );
+  }
+}
+
 
 
 class radioButtonView extends StatefulWidget {
