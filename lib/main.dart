@@ -1,9 +1,73 @@
 import 'package:flutter/material.dart';
 
 void main(){
-    runApp(new MaterialApp(home: new raiseButton()));
+    runApp(new MaterialApp(home: new radioButtonView()));
   //runApp(new stackView());
 }
+
+
+class radioButtonView extends StatefulWidget {
+  @override
+  _radioButtonViewState createState() => _radioButtonViewState();
+}
+
+class _radioButtonViewState extends State<radioButtonView> {
+
+  int rvalue = 0;
+
+  void radioMethod(value){
+    setState(() {
+      rvalue = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Radio(value: 1, groupValue: rvalue, onChanged: (int rb){
+              radioMethod(rb);
+            }),
+            new Radio(value: 2, groupValue: rvalue, onChanged: (int rb){
+              radioMethod(rb);
+            }),
+            new Radio(value: 3, groupValue: rvalue, onChanged: (int rb){
+              radioMethod(rb);
+            })
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class checkBoxView extends StatefulWidget {
+  @override
+  _checkBoxViewState createState() => _checkBoxViewState();
+}
+
+class _checkBoxViewState extends State<checkBoxView> {
+
+  bool cbool = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Checkbox(value: cbool, onChanged: (bool cb){
+          setState(() {
+            cbool = cb;
+          });
+        }),
+      ),
+    );
+  }
+}
+
 
 
 
