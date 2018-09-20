@@ -3,9 +3,71 @@ import 'otherDart.dart';
 
 
 void main(){
-    runApp(new MaterialApp(home: new alertView()));
+    runApp(new MaterialApp(home: new dialogView()));
   //runApp(new stackView());
 }
+
+class dialogView extends StatefulWidget {
+  @override
+  _dialogViewState createState() => _dialogViewState();
+}
+
+class _dialogViewState extends State<dialogView> {
+
+  SimpleDialog _sd;
+
+  void dialogMethod(){
+    _sd = new SimpleDialog(
+      title: new Text('Choose from one'),
+      children: <Widget>[
+        new SimpleDialogOption(
+          child: new Center(
+            child: new Text('Centerr'),
+          ),
+        ),
+        new SimpleDialogOption(
+          child: new Text('Yes'),
+          onPressed: (){
+            print('Yes clicked');
+          },
+
+        ),
+        new SimpleDialogOption(
+          child: new Text('No'),
+          onPressed: (){
+            print('NO clicked');
+          },
+        ),
+        new SimpleDialogOption(
+          child: new IconButton(icon: Icon(Icons.close), onPressed: (){
+            Navigator.pop(context);
+          }),
+        ),
+      ],
+    );
+
+    showDialog(
+        context: context,
+        child: _sd
+       );
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new RaisedButton(
+            onPressed: (){
+              dialogMethod();
+            },
+          child: new Text('Button'),
+        ),
+      ),
+    );
+  }
+}
+
 
 class alertView extends StatefulWidget {
   @override
