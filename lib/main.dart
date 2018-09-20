@@ -1,9 +1,99 @@
 import 'package:flutter/material.dart';
+import 'otherDart.dart';
+
 
 void main(){
-    runApp(new MaterialApp(home: new sliderView()));
+    runApp(new MaterialApp(home: new drawerView()));
   //runApp(new stackView());
 }
+
+class drawerView extends StatefulWidget {
+  @override
+  _drawerViewState createState() => _drawerViewState();
+}
+
+class _drawerViewState extends State<drawerView> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(title: new Text('Drawer widget'),),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+                accountName: new Text('Rahul Dhiman'),
+                accountEmail: new Text('Rahul.Dhiman@jungleworks.com'),
+                currentAccountPicture: new CircleAvatar(
+                  backgroundColor: Colors.black26,
+                  child: new Text('R'),
+                ),
+                decoration: new BoxDecoration(
+                  color: Colors.purple
+                ),
+                otherAccountsPictures: <Widget>[
+                  new CircleAvatar(
+                    backgroundColor: Colors.black26,
+                    child: new Text('S'),
+                  ),
+                  new CircleAvatar(
+                    backgroundColor: Colors.black26,
+                    child: new Text('M'),
+                  )
+                ],
+
+            ),
+            new ListTile(
+              title: new Text('Page 1'),
+              trailing: new Icon(Icons.arrow_forward),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new op('page1'))),
+            ),
+            new ListTile(
+              title: new Text('Page 2'),
+              trailing: new Icon(Icons.home),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new op('page2'))),
+            ),
+            new ListTile(
+              title: new Text('close'),
+              trailing: new Icon(Icons.close),
+              onTap: (){
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class switchView extends StatefulWidget {
+  @override
+  _switchViewState createState() => _switchViewState();
+}
+
+class _switchViewState extends State<switchView> {
+
+  bool bswitch = true;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+     body: new Center(
+       child: new Switch(
+           value: bswitch,
+           onChanged: (bool bs){
+             setState(() {
+               bswitch = bs;
+             });
+           }),
+     ),
+    );
+  }
+}
+
+
 
 class sliderView extends StatefulWidget {
   @override
