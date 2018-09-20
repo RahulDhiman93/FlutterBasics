@@ -3,9 +3,79 @@ import 'otherDart.dart';
 
 
 void main(){
-    runApp(new MaterialApp(home: new drawerView()));
+    runApp(new MaterialApp(home: new alertView()));
   //runApp(new stackView());
 }
+
+class alertView extends StatefulWidget {
+  @override
+  _alertViewState createState() => _alertViewState();
+}
+
+class _alertViewState extends State<alertView> {
+
+  void dialog(){
+    showDialog(
+        context: context,
+         child: new AlertDialog(
+           title: new Text('Warning'),
+           content: new Text('Device got hacked'),
+           actions: <Widget>[
+             new IconButton(icon: Icon(Icons.close), onPressed: (){
+               Navigator.pop(context);
+             })
+           ],
+         )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new RaisedButton(
+            onPressed: (){
+              dialog();
+            },
+            child: new Text('Alert button'),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class NotificationView extends StatefulWidget {
+  @override
+  _NotificationViewState createState() => _NotificationViewState();
+}
+
+class _NotificationViewState extends State<NotificationView> {
+
+  final GlobalKey<ScaffoldState> _skey = new GlobalKey<ScaffoldState>();
+
+  void method(){
+    _skey.currentState.showSnackBar(new SnackBar(content: new Text('Activated Snackbar')));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      key: _skey,
+      body: new Center(
+        child: new RaisedButton(
+            onPressed: (){
+              method();
+            },
+          child: new Text('Activate'),
+        ),
+      ),
+    );
+  }
+}
+
+
 
 class drawerView extends StatefulWidget {
   @override
